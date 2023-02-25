@@ -1,13 +1,14 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
 
 
-@Document(collection = "reviews")
 public class Review {
+  @Id
     private ObjectId id;
     private String body;
+
     public ObjectId getId() {
       return id;
     }
@@ -17,7 +18,7 @@ public class Review {
     public String getBody() {
       return body;
     }
-    public void setBody(String body) {
+    public Review(String body) {
       this.body = body;
     }
 
