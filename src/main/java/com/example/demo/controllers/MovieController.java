@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class MovieController {
    * Get all movies
    * Both methods work fine and return the same result
    */
+  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping
   public ResponseEntity<List<Movie>> getMovies() {
     // return ResponseEntity.ok("Hello World from my Java app!");
