@@ -14,15 +14,15 @@ import com.example.demo.models.Review;
 import com.example.demo.services.ReviewService;
 
 @RestController
-@RequestMapping("/api/v1/movies")
+@RequestMapping("/api/v1/reviews")
 public class ReviewController {
 
     @Autowired
   private ReviewService reviewService;
 
-  @PostMapping("/{id}/reviews")
+  @PostMapping
   public ResponseEntity<Review> createReview(@RequestBody Map<String, String> payload) {
-    return new ResponseEntity<Review>(reviewService.createReview(payload.get("reviewBody"), payload.get("id")), HttpStatus.OK);
+    return new ResponseEntity<Review>(reviewService.createReview(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.CREATED);
   }
 
 
