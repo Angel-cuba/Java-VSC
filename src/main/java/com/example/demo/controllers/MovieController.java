@@ -16,6 +16,7 @@ import com.example.demo.models.Movie;
 import com.example.demo.services.MovieService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/movies")
 public class MovieController {
     @Autowired
@@ -24,14 +25,12 @@ public class MovieController {
    * Get all movies
    * Both methods work fine and return the same result
    */
-  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping
   public ResponseEntity<List<Movie>> getMovies() {
     // return ResponseEntity.ok("Hello World from my Java app!");
     return new ResponseEntity<List<Movie>>(movieService.getMovies(), HttpStatus.OK);
   }
 
-  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping("/{imdbId}")
   public ResponseEntity<Optional<Movie>> getMovieById(@PathVariable String imdbId) {
     return new ResponseEntity<Optional<Movie>>(movieService.getMovieById(imdbId), HttpStatus.OK);
