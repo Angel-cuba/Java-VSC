@@ -27,7 +27,6 @@ public class MovieController {
    */
   @GetMapping
   public ResponseEntity<List<Movie>> getMovies() {
-    // return ResponseEntity.ok("Hello World from my Java app!");
     return new ResponseEntity<List<Movie>>(movieService.getMovies(), HttpStatus.OK);
   }
 
