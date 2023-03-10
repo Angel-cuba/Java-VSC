@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
   @Id
-  private ObjectId id;
+  private String _id;
   private String username;
   private String firstName;
   private String lastName;
@@ -24,13 +23,4 @@ public class User {
   private String password;
   private String role;
 
-  public User(String username, String firstName, String lastName, String profilePicture, String email, String password, String role) {
-    this.username = username;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.profilePicture = profilePicture;
-    this.email = email;
-    this.password = password;
-    this.role = role;
-  }
 }
