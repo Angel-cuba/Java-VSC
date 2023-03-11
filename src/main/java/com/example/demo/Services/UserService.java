@@ -58,4 +58,15 @@ public class UserService {
       userRepository.save(user);
     return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
   }  
+
+  public ResponseEntity<String> deleteUser(ObjectId id) {
+    Optional<User> user = userRepository.findById(id);
+
+    if (!user.isPresent()) {
+      return new ResponseEntity<String>("User with id " +id +" not found", HttpStatus.NOT_FOUND);
+    } else {
+      userRepository.deleteById(id);
+      return new ResponseEntity<String>("User with id " +id +" deleted", HttpStatus.OK);
+    }
+  }
 }
