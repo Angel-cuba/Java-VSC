@@ -15,7 +15,7 @@ public class User {
 
   @Id
   private String _id;
-  private String username;
+  private String userName;
   private String firstName;
   private String lastName;
   private String profilePicture;

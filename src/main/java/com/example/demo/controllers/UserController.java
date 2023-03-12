@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class UserController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> getUserById(@PathVariable ObjectId id) {
+  public ResponseEntity<?> getUserById(@PathVariable String id) {
     return userService.getUserById(id);
   }
 
@@ -57,7 +56,7 @@ public class UserController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public ResponseEntity<String> deleteUser(@PathVariable ObjectId id) {
+  public ResponseEntity<String> deleteUser(@PathVariable String id) {
     return userService.deleteUser(id);
   }  
 }
