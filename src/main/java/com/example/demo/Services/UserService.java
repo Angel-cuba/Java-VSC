@@ -3,7 +3,6 @@ package com.example.demo.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public ResponseEntity<String> getUserById(ObjectId id) {
+  public ResponseEntity<String> getUserById(String id) {
     Optional<User> user = userRepository.findById(id);
 
     if (!user.isPresent()) {
@@ -45,21 +44,29 @@ public class UserService {
   }
 
   public ResponseEntity<User> createUser(User user) {
+      // user.setPassword(passwordEncoder.encode(user.getPassword()));
       userRepository.save(user);
       return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
   public ResponseEntity<User> updateUser(User user) {
-    Optional<User> userExist = userRepository.findById(ObjectId.get());
+    User userExist = userRepository.findById(user.get_id()).get();
 
-    if (userExist.isPresent()) {
-      userRepository.save(user);
-    } 
-      userRepository.save(user);
-    return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    if (userExist != null) {
+      userExist.setUserName(user.getUserName());
+      userExist.setFirstName(user.getFirstName());
+      userExist.setLastName(user.getLastName());
+      userExist.setProfilePicture(user.getProfilePicture());
+      userExist.setEmail(user.getEmail());
+      userExist.setPassword(user.getPassword());
+      userRepository.save(userExist);
+      return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    } else {
+      return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
+    }
   }  
 
-  public ResponseEntity<String> deleteUser(ObjectId id) {
+  public ResponseEntity<String> deleteUser(String id) {
     Optional<User> user = userRepository.findById(id);
 
     if (!user.isPresent()) {
